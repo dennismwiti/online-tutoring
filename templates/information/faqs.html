@@ -1,0 +1,516 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Guruma - Online Course & Education HTML Template" />
+    <meta name="author" content="potenzaglobalsolutions.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Global-Online Tutoring</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    
+    <!-- CSS Global Compulsory (Do not remove)-->
+    <link rel="stylesheet" href="/static/css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css" />
+
+    <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature) -->
+    <link rel="stylesheet" href="/static/css/select2/select2.css" />
+    <link rel="stylesheet" href="/static/css/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/static/css/magnific-popup/magnific-popup.css" />
+
+    <!-- Template Style -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+
+  </head>
+  <body>
+
+    <!--=================================
+    Header -->
+    <header class="header header-style-02 header-sticky">
+      <nav class="navbar navbar-static-top navbar-expand-lg px-3 px-md-5">
+        <div class="container-fluid position-relative px-0">
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"><i class="fas fa-align-left"></i></button>
+          <a class="navbar-brand" href="{% url 'about' %}">
+            <img class="img-fluid" src="{% static 'images/logo-dark.svg' %}" alt="logo">
+          </a>
+          <a class="navbar-brand navbar-brand-sticky" href="{% url 'about' %}">
+            <img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="logo">
+          </a>
+          <div class="search-category ms-auto">
+            <form method="get" action="{% url 'search' %}">
+              <div class="form-group select-border course-category">
+                <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
+                <select class="basic-select" name="category">
+                    <option selected="selected">Curriculum</option>
+                    <option value="IGCSE">IGCSE</option>
+                    <option value="GCSE">GCSE</option>
+                    <option value="AS">AS</option>
+                    <option value="IB">IB</option>
+                    <option value="A-LEVELS">A-LEVELS</option>
+                    <option value="O-LEVELS">O-LEVELS</option>
+                    <option value="Pre-University">Pre-University</option>
+                    <option value="Enhance Exams">Enhance Exams</option>
+                </select>
+              </div>
+            </form>
+            <form method="get" action="{% url 'search' %}">
+              <input type="text" class="form-control" placeholder="Search Courses...">
+              <input type="hidden" name="category" value="your_category_value">
+              <button class="search-button" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="{% url 'courses' %}">Course</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="{% url 'teachers' %}">Find A tutor</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="{% url 'faqs' %}">How it works</a>
+              </li>
+              <li class="dropdown nav-item active">
+                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Pages<i class="fas fa-chevron-down fa-xs"></i></a>
+                <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                  <li>
+                    <div class="row g-0">
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Basic Pages</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="{% url 'about' %}"><span>About us</span></a></li>
+                          <li><a class="dropdown-item" href="{% url 'contact' %}"><span>Contact us</span></a></li>
+                          <li><a class="dropdown-item" href="login.html"><span>login</span></a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Information Pages</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="{% url 'privacy-policy' %}"><span>Privacy policy</span></a></li>
+                          <li><a class="dropdown-item" href="{% url 'terms-and-conditions' %}"><span>Terms & conditions</span></a></li>
+                          <li class="active"><a class="dropdown-item" href="{% url 'faqs' %}"><span>FAQs</span></a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Teachers</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="{% url 'teachers' %}"><span>Teachers</span></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="woo-action">
+            <ul class="list-unstyled">
+              <li class="user"><a data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Hello sign in<i class="fa fa-user ps-2 text-primary"></i></a></li>
+              <li class="cart dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="cart-icon"><i class="fas fa-shopping-cart"></i></span></button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                  <ul class="cart-list ps-0">
+                    <li class="d-flex">
+                      <a class="remove-item" href="#"><i class="fas fa-times text-danger"></i></a>
+                      <img class="img-fluid me-3" src="{% static 'images/shop/01.jpg' %}" alt="">
+                      <div class="cart-info">
+                        <a href="#">Landscape Visitors Book - 122 Pages, A Design, A4</a>
+                        <span class="d-block">1 x 12.49</span>
+                      </div>
+                    </li>
+                    <li class="d-flex">
+                      <a class="remove-item" href="#"><i class="fas fa-times text-danger"></i></a>
+                      <img class="img-fluid me-3" src="{% static 'images/shop/02.jpg' %}" alt="">
+                      <div class="cart-info">
+                        <a href="#">Leather Visitors Notebook True-Ally A4 Faux</a>
+                        <span class="d-block">1 x 28.72</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="cart-footer">
+                    <div class="d-flex mb-3">
+                      <b class="me-auto text-dark">Subtotal:</b>
+                      <span>$41.21</span>
+                    </div>
+                    <div class="d-inline-block d-sm-flex">
+                      <a class="btn btn-sm btn-primary text-white me-2 px-4" href="#">View cart</a>
+                      <a class="btn btn-sm btn-dark text-white ms-0 mt-1 mt-sm-0 ms-sm-2 px-4" href="#">Checkout</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--=================================
+    Header -->
+
+    <!--=================================
+    Inner Header -->
+    <section class="inner-header bg-holder bg-overlay-black-90" style="background-image: url('{% static 'images/bg/03.jpg' %}');">
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+            <h1 class="breadcrumb-title mb-0 text-white">FAQs & How it works</h1>
+          </div>
+          <div class="col-md-6">
+            <ol class="breadcrumb d-flex justify-content-center justify-content-md-end ms-auto">
+              <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="fas fa-home me-1"></i>Home</a></li>
+              <li class="breadcrumb-item active"><span>faqs</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Inner Header -->
+    
+    <!--=================================
+    Faqs -->
+    <section class="space-ptb">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mb-4 mb-md-0">
+            <div class="accordion" id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">But doesn’t something in that story set strangely with you? </button>
+                  </h5>
+                </div>
+                <div id="collapseOne" class="collapse show accordion-content" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>Motivation is not an accident or something that someone else can give you — you are the only one with the power to motivate you. Motivation cannot be an external force, it must come from within as the natural product of your desire to achieve something and your belief that you are capable to succeed at your goal. Success is something of which we all want more.</p>
+                    <p> Others call it a sense of entitlement. No matter what term you use, it’s basically the same thing. Either way, it’s governed by who you think you are and what circumstances you accept as appropriate for you.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What does success look like to me? Why do I want a particular thing? </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse accordion-content" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>Motivation is not an accident or something that someone else can give you — you are the only one with the power to motivate you. Motivation cannot be an external force, it must come from within as the natural product of your desire to achieve something and your belief that you are capable to succeed at your goal. Success is something of which we all want more.</p>
+                    <p>If success is a process with a number of defined steps, then it is just like any other process. So, what is the first step in any process?</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingthree">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">How will this achievement change my life? </button>
+                  </h5>
+                </div>
+                <div id="collapsethree" class="collapse accordion-content" aria-labelledby="headingthree" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>Making a decision to do something – this is the first step. We all know that nothing moves until someone makes a decision. The first action is always in making the decision to proceed. This is a fundamental step, which most people overlook.</p>
+                    <p>So, how can we stay on course with all the distractions in our lives? Willpower is a good start, but it’s very difficult to stay on track simply through willpower.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingfour">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">So how do we get clarity? </button>
+                  </h5>
+                </div>
+                <div id="collapsefour" class="collapse accordion-content" aria-labelledby="headingfour" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>So how do we get clarity? Simply by asking ourselves lots of questions: What do I really want? What does success look like to me? Why do I want a particular thing? How will this achievement change my life? How can I use this success to make a difference for others.</p>
+                    <p>The price is something not necessarily defined as financial. It could be time, effort, sacrifice, money or perhaps, something else. The point is that we must be fully aware of the price and be willing to pay it, if we want to have success.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingfive">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">What can you do to form the habit of becoming a success? </button>
+                  </h5>
+                </div>
+                <div id="collapsefive" class="collapse accordion-content" aria-labelledby="headingfive" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>Franklin’s extraordinary success in life and politics can be attributed to his perseverance to overcome his personal liabilities, and his desire to constantly become better. Next time you really want to achieve something, take time to focus on your own personal journal. What is your temptation that is standing in your way to greatness.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingsix">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">Was this just another little prank, courtesy of a mischievous Universe?</button>
+                  </h5>
+                </div>
+                <div id="collapsesix" class="collapse accordion-content" aria-labelledby="headingsix" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>I could just think about receiving more money, and I’d get an immediate surge of business within hours. This pattern went on for 16 or 17 years, till I shut down my writing and editing business. So it wasn’t an occasional fluke. Now, I must admit I had a burning determination to stay in Japan, and for the first year or two I never knew if things would work out for me or not.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingsevan">
+                  <h5 class="accordion-title mb-0">
+                  <button class="btn btn-link d-flex align-items-center ms-auto collapsed" data-bs-toggle="collapse" data-bs-target="#collapsesevan" aria-expanded="false" aria-controls="collapsesevan">Get yourself nice and relaxed and settled?</button>
+                  </h5>
+                </div>
+                <div id="collapsesevan" class="collapse accordion-content" aria-labelledby="headingsevan" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <p>Become aware of the temperature, the sights, the sounds and enjoy walking along the path of your life. Make it sensory rich and get comfortable with the idea. Imagine the feeling of your feet walking along the path and the sound they make.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="widgets">
+              <div class="widget widget-serach">
+                <h6 class="widget-title">Search</h6>
+                <div class="widget-content">
+                  <form class="fill-form">
+                    <div class="mb-3">
+                      <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="button" class="btn btn-primary">Search</button>
+                  </form>
+                </div>
+              </div>
+              <div class="widget widget-serach">
+                <h6 class="widget-title">Submit Your Question</h6>
+                <div class="widget-content">
+                  <form class="row fill-form mb-4 mb-md-0 form-flat-style">
+                    <div class="mb-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="mb-3 col-sm-12">
+                      <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="mb-3 col-sm-12">
+                      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3 col-sm-12 mb-0">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Faqs -->
+
+    <!--=================================
+    Feature info -->
+    <section class="space-pb">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="bg-dark rounded-sm p-3 p-sm-4 p-xl-5">
+              <div class="m-2">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="flaticon-book fa-4x text-white me-4"></i>
+                  <h3 class="mb-0 mt-0 text-white">Become a instructor on Guruma</h3>
+                </div>
+                <p class="mb-4 text-white lead">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+                <a class="btn btn-outline-primary" href="#">Start teaching today</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="bg-primary rounded-sm p-3 p-sm-4 p-xl-5">
+              <div class="m-2">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="flaticon-book-1 fa-4x text-white me-4"></i>
+                  <h3 class="mb-0 mt-0 text-white">Guruma for business & Community</h3>
+                </div>
+                <p class="mb-4 text-white lead">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+                <a class="btn btn-light" href="#">Get guruma for Business</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Feature info -->
+
+    <!--=================================
+    Client Logo -->
+    <section class="space-pb">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-gl-12 mb-4">
+            <div class="section-title">
+              <h2>Trusted by companies</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="owl-carousel our-clients" data-nav-arrow="false" data-items="6" data-md-items="5" data-sm-items="4" data-xs-items="3" data-xx-items="1" data-space="30" data-autoheight="true" data-autospeed="4000">
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/01.svg' %}" alt=""></a>
+              </div>
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/02.svg' %}" alt=""></a>
+              </div>
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/03.svg' %}" alt=""></a>
+              </div>
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/04.svg' %}" alt=""></a>
+              </div>
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/05.svg' %}" alt=""></a>
+              </div>
+              <div class="item">
+                <a href="#"><img class="img-fluid" src="{% static 'images/client/06.svg' %}" alt=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Client Logo -->
+
+    <!--=================================
+    footer-->
+    <footer class="footer">
+      <div class="space-ptb bg-overlay-white-97" style="background-image: url('{% static 'images/bg/05.jpg' %}');">
+        <div class="container position-relative">
+          <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+              <div class="footer-contact-info">
+                <div class="footer-logo mb-2">
+                  <a href="index.html"><img class="img-fluid" src="{% static 'images/logo-dark.svg' %}" alt=""></a>
+                </div>
+                <div class="contact-address">
+                  <div class="contact-item mb-3 mb-md-4">
+                    <p>17504 Carlton Cuevas Rd, <br>Gulfport, MS, 39503</p>
+                  </div>
+                  <div class="contact-item mb-3 mb-md-4">
+                    <h4 class="mb-0 fw-normal"><a href="#">+(704) 279-1249</a></h4>
+                  </div>
+                  <div class="contact-item">
+                    <a href="#">letstalk@guruma.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3 col-lg-4 mb-4 mb-lg-0">
+              <h5 class="footer-title">Explore</h5>
+              <div class="footer-link">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Overview</a></li>
+                  <li><a href="#">About us</a></li>
+                  <li><a href="#">Success story</a></li>
+                  <li><a href="#">Teachers</a></li>
+                  <li><a href="#">Contact us</a></li>
+                </ul>
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Help</a></li>
+                  <li><a href="#">Our news</a></li>
+                  <li><a href="#">Courses</a></li>
+                  <li><a href="#">Research</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3 col-lg-2 mb-4 mb-sm-0">
+              <h5 class="footer-title">Resources</h5>
+              <div class="footer-link">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Donors</a></li>
+                  <li><a href="#">Educators</a></li>
+                  <li><a href="#">Professionals</a></li>
+                  <li><a href="#">Become A Teacher</a></li>
+                  <li><a href="#">Student Profile</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <h5 class="footer-title">Subscribe us</h5>
+              <p>Sign up to our newsletter to get the latest news and offers.</p>
+              <form>
+                <div class="form-group mb-3">
+                  <input type="email" class="form-control" placeholder="Email*">
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="social-icon text-md-start text-center mb-3 mb-md-0">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fab fa-google"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="copyright text-md-end text-center">
+                <p class="mb-0 small">© Copyright 2024 <a href="#">HROSE</a> All Rights Reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--=================================
+    footer-->
+
+    <!--=================================
+    Back To Top -->
+    <div id="back-to-top" class="back-to-top">
+      <a href="#"><i class="fas fa-chevron-up"></i></a>
+    </div>
+    <!--=================================
+    Back To Top -->
+    
+    <!--=================================
+    Javascript -->
+
+    <!-- JS Global Compulsory (Do not remove)-->
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/popper/popper.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+    
+    <!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)-->
+    <script src="/static/js/select2/select2.full.js"></script>
+    <script src="/static/js/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/static/js/magnific-popup/jquery.magnific-popup.min.js"></script>
+    
+    <!-- Template Scripts (Do not remove)-->
+    <script src="/static/js/custom.js"></script>
+    
+  </body>
+</html>

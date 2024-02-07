@@ -1,0 +1,845 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Guruma - Online Course & Education HTML Template" />
+    <meta name="author" content="potenzaglobalsolutions.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Global-Online Tutoring</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    
+    <!-- CSS Global Compulsory (Do not remove)-->
+    <link rel="stylesheet" href="/static/css/font-awesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css" />
+
+    <!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature) -->
+    <link rel="stylesheet" href="/static/css/select2/select2.css" />
+
+    <!-- Template Style -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+
+  </head>
+  <body>
+
+    <!--=================================
+    Header -->
+    <header class="header header-style-02 header-sticky">
+      <nav class="navbar navbar-static-top navbar-expand-lg px-3 px-md-5">
+        <div class="container-fluid position-relative px-0">
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"><i class="fas fa-align-left"></i></button>
+          <a class="navbar-brand" href="{% url 'about' %}">
+            <img class="img-fluid" src="{% static 'images/logo-dark.svg' %}" alt="logo">
+          </a>
+          <a class="navbar-brand navbar-brand-sticky" href="{% url 'about' %">
+            <img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="logo">
+          </a>
+          <div class="search-category ms-auto">
+            <div class="form-group select-border course-category">
+              <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
+              <select class="basic-select">
+                <option selected="selected">Curriculum</option>
+                <option>IGCSE</option>
+                <option>GCSE</option>
+                <option>AS</option>
+                <option>IB</option>
+                <option>A-LEVELS</option>
+                <option>O-LEVELS</option>
+                <option>Pre-University</option>
+                <option>Enhance Exams</option>
+              </select>
+            </div>
+            <input type="text" class="form-control" placeholder="Search Courses...">
+            <button class="search-button" type="submit"> <i class="fa fa-search"></i></button>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="{% url 'home' %}" >Home</a>
+              </li>
+              <li class="dropdown nav-item active">
+                <a class="nav-link" href="{% url 'courses' %}">Course</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="{% url 'teachers' %}">Find A tutor</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="{% url 'faqs' %}">How it works</a>
+              </li>
+              <li class="dropdown nav-item">
+                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Pages<i class="fas fa-chevron-down fa-xs"></i></a>
+                <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                  <li>
+                    <div class="row g-0">
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Basic Pages</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="about-us.html"><span>About us</span></a></li>
+                          <li><a class="dropdown-item" href="contact-us.html"><span>Contact us</span></a></li>
+                          <li><a class="dropdown-item" href="login.html"><span>login</span></a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Information Pages</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="{% url 'privacy-policy' %}"><span>Privacy policy</span></a></li>
+                          <li><a class="dropdown-item" href="{% url 'terms-and-conditions' %}"><span>Terms & conditions</span></a></li>
+                          <li><a class="dropdown-item" href="{% url 'faqs' %}"><span>FAQs</span></a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6 col-md-4">
+                        <h6 class="nav-title">Teachers Pages</h6>
+                        <ul class="list-unstyled mt-lg-1">
+                          <li><a class="dropdown-item" href="{% url 'teachers' %}"><span>Teachers</span></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="woo-action">
+            <ul class="list-unstyled">
+              <li class="user"><a data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Hello sign in<i class="fa fa-user ps-2 text-primary"></i></a></li>
+              <li class="cart dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="cart-icon"><i class="fas fa-shopping-cart"></i></span></button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                  <ul class="cart-list ps-0">
+                    <li class="d-flex">
+                      <a class="remove-item" href="#"><i class="fas fa-times text-danger"></i></a>
+                      <img class="img-fluid me-3" src="{% static 'images/shop/01.jpg' %}" alt="">
+                      <div class="cart-info">
+                        <a href="#">Landscape Visitors Book - 122 Pages, A Design, A4</a>
+                        <span class="d-block">1 x 12.49</span>
+                      </div>
+                    </li>
+                    <li class="d-flex">
+                      <a class="remove-item" href="#"><i class="fas fa-times text-danger"></i></a>
+                      <img class="img-fluid me-3" src="{% static 'images/shop/02.jpg' %}" alt="">
+                      <div class="cart-info">
+                        <a href="#">Leather Visitors Notebook True-Ally A4 Faux</a>
+                        <span class="d-block">1 x 28.72</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="cart-footer">
+                    <div class="d-flex mb-3">
+                      <b class="me-auto text-dark">Subtotal:</b>
+                      <span>$41.21</span>
+                    </div>
+                    <div class="d-inline-block d-sm-flex">
+                      <a class="btn btn-sm btn-primary text-white me-2 px-4" href="#">View cart</a>
+                      <a class="btn btn-sm btn-dark text-white ms-0 mt-1 mt-sm-0 ms-sm-2 px-4" href="#">Checkout</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--=================================
+    Header -->
+
+    <!--=================================
+    Modal login -->
+    <div class="modal login fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="loginModalLabel">Log in & Register</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs nav-tabs-02 justify-content-center" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false"> <span> Log in</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true"><span>Register</span></a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <form class="row my-4 align-items-center">
+                  <div class="mb-3 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Username">
+                  </div>
+                  <div class="mb-3 col-sm-12">
+                    <input type="Password" class="form-control" placeholder="Password">
+                  </div>
+                  <div class="col-sm-6 d-grid">
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
+                      <li class="me-1"><a class="text-dark" href="#"><b>Already Registered User? Click here to login</b></a></li>
+                    </ul>
+                  </div>
+                </form>
+                <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
+                  <div class="mb-4 d-block text-center"><b class="bg-white ps-2 pe-2 mt-3 d-block">Login or Sign in with</b></div>
+                  <form class="row">
+                    <div class="col-sm-6">
+                      <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-facebook-f me-2"></i>Login with Facebook</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-twitter me-2"></i>Login with Twitter</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0" href="#"><span><i class="fab fa-instagram me-2"></i>Login with Instagram</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i class="fab fa-linkedin-in me-2"></i>Login with Linkedin</span></a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <form class="row my-4 align-items-center">
+                  <div class="mb-3 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Username">
+                  </div>
+                  <div class="mb-3 col-sm-12">
+                    <input type="email" class="form-control" placeholder="Email Address">
+                  </div>
+                  <div class="mb-3 col-sm-12">
+                    <input type="Password" class="form-control" placeholder="Password">
+                  </div>
+                  <div class="mb-3 col-sm-12">
+                    <input type="Password" class="form-control" placeholder="Confirm Password">
+                  </div>
+                  <div class="col-sm-6 d-grid">
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
+                      <li class="me-1"><a class="text-dark" href="#"><b>Already Registered User? Click here to login</b></a></li>
+                    </ul>
+                  </div>
+                </form>
+                <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
+                  <div class="mb-4 d-block text-center"><b class="bg-white ps-2 pe-2 mt-3 d-block">Login or Sign in with</b></div>
+                  <form class="row">
+                    <div class="col-sm-6">
+                      <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-facebook-f me-2"></i>Login with Facebook</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-twitter me-2"></i>Login with Twitter</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0" href="#"><span><i class="fab fa-instagram me-2"></i>Login with Instagram</span></a>
+                    </div>
+                    <div class="col-sm-6">
+                      <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i class="fab fa-linkedin-in me-2"></i>Login with Linkedin</span></a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--=================================
+    Modal login -->
+
+    <!--=================================
+    Inner Header -->
+    <section class="inner-header bg-holder bg-overlay-black-90" style="background-image: url('{% static 'images/bg/03.jpg' %}');">
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+            <h1 class="breadcrumb-title mb-0 text-white">Course Details</h1>
+          </div>
+          <div class="col-md-6">
+            <ol class="breadcrumb d-flex justify-content-center justify-content-md-end ms-auto">
+              <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home me-1"></i>Home</a></li>
+              <li class="breadcrumb-item active"><span>Course</span></li>
+              <li class="breadcrumb-item active"><span>course details</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Inner Header -->
+    
+    <!--=================================
+    Course Details -->
+    <section class="space-ptb course-details">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-xl-8">
+            <img class="img-fluid  mb-4" src="{% static 'images/course/10.jpg' %}" alt="">
+            <h4 class="news-title mb-3">{{single_course.title}}</h4>
+<!--            <div class="d-flex align-items-center">-->
+<!--              <span class="text-warning h6 mb-0 me-2">3.5</span>-->
+<!--              <ul class="list-unstyled d-flex mb-0 me-2">-->
+<!--                <li><i class="fas fa-star text-warning"></i></li>-->
+<!--                <li><i class="fas fa-star text-warning"></i></li>-->
+<!--                <li><i class="fas fa-star text-warning"></i></li>-->
+<!--                <li><i class="fas fa-star-half-alt text-warning"></i></li>-->
+<!--                <li><i class="far fa-star text-warning"></i></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+            <div><b class="me-2">Created by </b><a href="#">{{single_course.instructor}}</a></div>
+            <ul class="list-unstyled d-sm-flex mt-3 mb-4">
+              <li class="d-inline"><a class="btn btn-outline-dark-hover btn-sm me-3 mb-sm-0 mb-3" href="#">Wishlist</a></li>
+              <li class="d-inline social-share">
+                <a class="btn btn-outline-primary-hover btn-sm me-3 mb-sm-0 mb-3" href="#">Share</a>
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                </ul>
+              </li>
+              <li class="d-inline"><a class="btn btn-outline-dark-hover btn-sm" href="#">Gift this course</a></li>
+            </ul>
+            <ul class="list-unstyled d-flex flex-wrap mb-5">
+              <li class="course-d-Teacher me-3 me-lg-5 mb-2 mb-lg-0">
+                <div class="d-flex">
+                  <img class="me-2 me-lg-3 mt-2" src="{% static 'images/avatar/11.jpg' %}" alt="">
+                  <div class="d-block">
+                    <p class="mb-0">Teacher</p>
+                    <span class="lead fw-6 text-dark">{{single_course.instructor}}</span>
+                  </div>
+                </div>
+              </li>
+              <li class="me-3 me-lg-5 mb-2 mb-lg-0">
+                <div class="d-flex">
+                  <i class="flaticon-bookmark fa-3x mt-2 me-2 me-lg-3 text-primary"></i>
+                  <div class="d-block">
+                    <p class="mb-0">Categories</p>
+                    <span class="lead fw-6 text-dark">{{single_course.category}}</span>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="d-flex">
+                  <i class="flaticon-student fa-3x mt-2 me-2 me-lg-3 text-primary"></i>
+                  <div class="d-block">
+                    <p class="mb-0">Students</p>
+                    <span class="lead fw-6 text-dark">157 (Registered)</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="border mb-4">
+              <h6 class="text-dark px-4 py-2 bg-light mb-0">Description</h6>
+              <div class="p-4 border-top">
+                <span class="lead text-dark fw-6">Course Description</span>
+                <p class="mb-4">{{ single_course.description|safe }}.</p>
+              </div>
+            </div>
+            <div class="border mb-4">
+              <h6 class="text-dark px-4 py-2 bg-light mb-0">Curriculum</h6>
+              <div class="p-4 border-top">
+                <span class="lead text-dark fw-6">Overview</span>
+                <ul class="list-unstyled mt-3">
+                  <li class="d-sm-flex align-items-center border-bottom pb-3 mb-3">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 1 :</span>
+                    <span>Getting Started</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>45 min</span>
+                    </div>
+                  </li>
+                  <li class="d-sm-flex align-items-center border-bottom pb-3 mb-3">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 2 :</span>
+                    <span>YouTube Video</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>30 min</span>
+                    </div>
+                  </li>
+                  <li class="d-sm-flex align-items-center pb-3 mb-3">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 3 :</span>
+                    <span>Live lesson - zoom</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>20 min</span>
+                    </div>
+                  </li>
+                </ul>
+                <span class="lead text-dark fw-6">Beginner</span>
+                <ul class="list-unstyled mt-3 mb-0">
+                  <li class="d-sm-flex align-items-center border-bottom pb-3 mb-3">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 1 :</span>
+                    <span>Getting Started</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>45 min</span>
+                    </div>
+                  </li>
+                  <li class="d-sm-flex align-items-center border-bottom pb-3 mb-3">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 2 :</span>
+                    <span>YouTube Video</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>30 min</span>
+                    </div>
+                  </li>
+                  <li class="d-sm-flex align-items-center">
+                    <i class="flaticon-list-1 fa-sm me-2 text-primary"></i>
+                    <span class="me-4">Lecture 3 :</span>
+                    <span>Live lesson - zoom</span>
+                    <div class="ms-auto">
+                      <i class="far fa-clock text-primary me-2"></i>
+                      <span>20 min</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="border mb-4">
+              <h6 class="text-dark px-4 py-2 bg-light mb-0">Student feedback </h6>
+              <div class="p-4 border-top">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="me-auto">
+                    <span>40 Reviews</span>
+                    <ul class="list-unstyled d-flex mb-0">
+                      <li><i class="fas fa-star text-warning"></i></li>
+                      <li><i class="fas fa-star text-warning"></i></li>
+                      <li><i class="fas fa-star text-warning"></i></li>
+                      <li><i class="fas fa-star-half-alt text-warning"></i></li>
+                      <li><i class="far fa-star text-warning"></i></li>
+                    </ul>
+                  </div>
+                  <b class="display-4 text-warning fw-bold">3.5</b>
+                </div>
+                <div class="progress-item mb-2">
+                  <div class="d-flex">
+                    <div class="progress-title mb-1 me-auto">5 Stars</div>
+                    <span>14</span>
+                  </div>
+                  <div class="progress rounded" style="height: 6px;">
+                    <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="progress-item mb-2">
+                  <div class="d-flex">
+                    <div class="progress-title mb-1 me-auto">4 Stars</div>
+                    <span>12</span>
+                  </div>
+                  <div class="progress rounded" style="height: 6px;">
+                    <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 55%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="progress-item mb-2">
+                  <div class="d-flex">
+                    <div class="progress-title mb-1 me-auto">3 Stars</div>
+                    <span>3</span>
+                  </div>
+                  <div class="progress rounded" style="height: 6px;">
+                    <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="progress-item mb-2">
+                  <div class="d-flex">
+                    <div class="progress-title mb-1 me-auto">2 Stars</div>
+                    <span>4</span>
+                  </div>
+                  <div class="progress rounded" style="height: 6px;">
+                    <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 32%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="d-flex">
+                    <div class="progress-title mb-1 me-auto">1 Stars</div>
+                    <span>7</span>
+                  </div>
+                  <div class="progress rounded" style="height: 6px;">
+                    <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border mb-4">
+              <h6 class="text-dark px-4 py-2 bg-light mb-0">Listing 5 Reviews For PMP Exam Prep Seminar - PMBOK Guide 6 </h6>
+              <div class="p-4 border-top">
+                <div class="mb-4 d-xl-inline-flex">
+                  <img class="me-3 media-img" src="{% static 'images/avatar/06.jpg' %}" alt="">
+                  <div class="media-body">
+                    <div class="px-xl-4 mt-3 mt-xl-0">
+                      <div class="d-flex align-items-center">
+                        <h6 class="mt-0">Felica Queen </h6>
+                        <div class="d-flex ms-auto mb-3">
+                          <span class="px-2 border text-success rounded-sm d-inline-block me-2">4.0</span>
+                          <ul class="list-unstyled d-flex mb-0">
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="far fa-star text-warning"></i></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <p>Then work backwards to develop the plan. What steps are required to get you to the goals? Make the plan as detailed as possible. Try to visualize and then plan.</p>
+                      <div class="d-sm-flex">
+                        <a class="bg-light text-dark rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block mb-2 mb-sm-0" href="#"> <i class="fas fa-reply pe-1"></i> Reply Review </a>
+                        <a class="bg-success-soft text-success rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-up pe-1"></i> 56 Votes</a>
+                        <a class="bg-danger-soft text-danger rounded-sm px-3 py-1 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-down pe-1"></i> 06</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="d-xl-inline-flex mt-4 mb-4">
+                  <img class="me-3 media-img" src="{% static 'images/avatar/11.jpg' %}" alt="">
+                  <div class="media-body">
+                    <div class="px-xl-4 mt-3 mt-xl-0">
+                      <div class="d-flex align-items-center">
+                        <h6 class="mt-0">Alice Williams </h6>
+                        <div class="d-flex ms-auto mb-3">
+                          <span class="px-2 border text-success border-radius d-inline-block me-2">3.0</span>
+                          <ul class="list-unstyled d-flex mb-0">
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="far fa-star text-warning"></i></li>
+                            <li><i class="far fa-star text-warning"></i></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <p>Along with your plans, you should consider developing an action orientation that will keep you motivated to move forward at all times This requires a little.</p>
+                      <div class="d-sm-flex">
+                        <a class="bg-light text-dark rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block mb-2 mb-sm-0" href="#"> <i class="fas fa-reply pe-1"></i> Reply Review </a>
+                        <a class="bg-success-soft text-success rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-up pe-1"></i> 67 Votes</a>
+                        <a class="bg-danger-soft text-danger rounded-sm px-3 py-1 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-down pe-1"></i> 04</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="d-xl-inline-flex">
+                  <img class="me-3 media-img" src="{% static 'images/avatar/05.jpg' %}" alt="">
+                  <div class="media-body">
+                    <div class="px-xl-4 mt-3 mt-xl-0">
+                      <div class="d-flex align-items-center">
+                        <h6 class="mt-0">Mellissa Doe</h6>
+                        <div class="d-flex ms-auto mb-3">
+                          <span class="px-2 border text-success rounded-sm d-inline-block me-2">5.0</span>
+                          <ul class="list-unstyled d-flex mb-0">
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                            <li><i class="fas fa-star text-warning"></i></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <p>I coach my clients to practice the 3 D’s – Defer, Delegate or Delete. Can the particular activity be done later? Defer it! Can it be done by someone else? Delegate</p>
+                      <div class="d-sm-flex">
+                        <a class="bg-light text-dark rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block mb-2 mb-sm-0" href="#"> <i class="fas fa-reply pe-1"></i> Reply Review </a>
+                        <a class="bg-success-soft text-success rounded-sm px-3 py-1 me-2 me-xl-4 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-up pe-1"></i> 48 Votes</a>
+                        <a class="bg-danger-soft text-danger rounded-sm px-3 py-1 font-sm d-inline-block" href="#"> <i class="far fa-thumbs-down pe-1"></i> 09</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border">
+              <h6 class="text-dark px-4 py-2 bg-light mb-0">Add a Review</h6>
+              <div class="p-4 border-top">
+                <form class="form-flat-style">
+                  <div class="row">
+                    <div class="form-group mb-3 col-md-12">
+                      <div class="ratings">
+                        <input type="radio" id="star5" name="ratings" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="ratings" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="ratings" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="ratings" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="ratings" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="ratings" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="ratings" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="ratings" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="ratings" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="ratings" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3 col-lg-4">
+                      <label class="form-label">Your name</label>
+                      <input type="text" class="form-control" placeholder="Your name">
+                    </div>
+                    <div class="form-group mb-3 col-lg-4">
+                      <label class="form-label">Your email</label>
+                      <input type="email" class="form-control" placeholder="Your email">
+                    </div>
+                    <div class="form-group mb-3 col-lg-4">
+                      <label class="form-label">Subject</label>
+                      <input type="text" class="form-control" id="phone" placeholder="Subject">
+                    </div>
+                    <div class="form-group mb-3 col-lg-12">
+                      <label class="form-label">Your message</label>
+                      <textarea class="form-control" rows="4" placeholder="Your message"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                      <a class="btn btn-primary" href="#">Submit review</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-xl-4 mt-5 mt-md-0">
+            <div class="widgets">
+              <div class="widget widget-price">
+                <h6 class="widget-title">Price</h6>
+                <div class="widget-content">
+                  <a class="btn btn-primary" href="#">Get course</a>
+                  <span class="fw-bold text-success lead ms-3">Free</span>
+                </div>
+              </div>
+
+              <div class="widget">
+                <h6 class="widget-title">Search Classes</h6>
+                <div class="widget-content">
+                  <form class="form-flat-style">
+                    <div class="form-group mb-3">
+                      <input type="text" class="form-control" placeholder="Search popular class">
+                    </div>
+                    <div class="form-check ps-0">
+                      <div class="form-group select-border mb-3">
+                        <select class="form-control basic-select">
+                          <option value="1" selected="selected">Development</option>
+                          <option value="3">Design</option>
+                          <option value="4">Marketing</option>
+                          <option value="2">IT & software</option>
+                          <option value="2">Photography</option>
+                          <option value="2">Music</option>
+                          <option value="2">Personal Development</option>
+                          <option value="2">Business</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-dark">Search</button>
+                  </form>
+                </div>
+              </div>
+              <div class="widget widget-course-instructor">
+                <h6 class="widget-title">Course Instructor</h6>
+                <div class="widget-content">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <img class="rounded-circle img-fluid mb-2" src="{% static 'images/avatar/04.jpg' %}" alt="">
+                    </div>
+                  </div>
+                  <span class="lead fw-6 text-dark">Felica Queen</span>
+                  <p class="mb-0">Member Since May 2009</p>
+                  <ul class="d-flex mb-0 list-unstyled mt-2">
+                    <li><a class="btn btn-outline-dark-hover btn-sm py-1 px-2 mx-1" href="#">497 Views</a></li>
+                    <li><a class="btn btn-outline-primary-hover btn-sm py-1 px-2 mx-1" href="#">795 Courses</a></li>
+                    <li><a class="btn btn-outline-dark-hover btn-sm py-1 px-2 mx-1" href="#">See all course</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="widget widget-course-info">
+                <h6 class="widget-title">Course info</h6>
+                <div class="widget-content">
+                  <ul class="list">
+                    <li>
+                      <b>Course Date :</b>
+                      <span>17 Feb 2020 - 20 May 2020</span>
+                    </li>
+                    <li>
+                      <b>Time :</b>
+                      <span>09:00 - 01:00</span>
+                    </li>
+                    <li>
+                      <b>Duration :</b>
+                      <span>90 Hours</span>
+                    </li>
+                    <li>
+                      <b>Lectures :</b>
+                      <span>23</span>
+                    </li>
+                    <li>
+                      <b>Levels :</b>
+                      <span>Beginner</span>
+                    </li>
+                    <li>
+                      <b>Enrolled :</b>
+                      <span>1874 Students</span>
+                    </li>
+                    <li>
+                      <b>Video :</b>
+                      <span>12 Hours</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="widget">
+                <h6 class="widget-title">Social share</h6>
+                <div class="widget-content">
+                  <div class="social-icon-round">
+                    <ul>
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                      <li><a href="#"><i class="fab fa-google"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="widget widget-tag">
+                <h6 class="widget-title">Popular Classes</h6>
+                <div class="widget-content">
+                  <ul class="list">
+                    <li><a href="#">MBA</a></li>
+                    <li><a href="#">Bachelor</a></li>
+                    <li><a href="#">BSc</a></li>
+                    <li><a href="#">BA</a></li>
+                    <li><a href="#">BBA</a></li>
+                    <li><a href="#">Diploma</a></li>
+                    <li><a href="#">Library</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=================================
+    Course Details -->
+
+    <!--=================================
+    footer-->
+    <footer class="footer ">
+      <div class="space-ptb bg-overlay-white-97" style="background-image: url('{% static 'images/bg/05.jpg' %};">
+        <div class="container position-relative">
+          <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+              <div class="footer-contact-info">
+                <div class="footer-logo mb-2">
+                  <a href="index.html"><img class="img-fluid" src="{% static 'images/logo-dark.svg' %}" alt=""></a>
+                </div>
+                <div class="contact-address">
+                  <div class="contact-item mb-3 mb-md-4">
+                    <p>17504 Carlton Cuevas Rd, <br>Gulfport, MS, 39503</p>
+                  </div>
+                  <div class="contact-item mb-3 mb-md-4">
+                    <h4 class="mb-0 fw-normal"><a href="#">+(704) 279-1249</a></h4>
+                  </div>
+                  <div class="contact-item">
+                    <a href="#">letstalk@guruma.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3 col-lg-4 mb-4 mb-lg-0">
+              <h5 class="footer-title">Explore</h5>
+              <div class="footer-link">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Overview</a></li>
+                  <li><a href="#">About us</a></li>
+                  <li><a href="#">Success story</a></li>
+                  <li><a href="#">Teachers</a></li>
+                  <li><a href="#">Contact us</a></li>
+                </ul>
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Help</a></li>
+                  <li><a href="#">Our news</a></li>
+                  <li><a href="#">Courses</a></li>
+                  <li><a href="#">Research</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3 col-lg-2 mb-4 mb-sm-0">
+              <h5 class="footer-title">Resources</h5>
+              <div class="footer-link">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#">Donors</a></li>
+                  <li><a href="#">Educators</a></li>
+                  <li><a href="#">Professionals</a></li>
+                  <li><a href="#">Become A Teacher</a></li>
+                  <li><a href="#">Student Profile</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <h5 class="footer-title">Subscribe us</h5>
+              <p>Sign up to our newsletter to get the latest news and offers.</p>
+              <form>
+                <div class="form-group mb-3">
+                  <input type="email" class="form-control" placeholder="Email*">
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="social-icon text-md-start text-center mb-3 mb-md-0">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fab fa-google"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="copyright text-md-end text-center">
+                <p class="mb-0 small">© Copyright 2021 <a href="#">HROSE</a> All Rights Reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--=================================
+    footer-->
+
+    <!--=================================
+    Back To Top -->
+    <div id="back-to-top" class="back-to-top">
+      <a href="#"><i class="fas fa-chevron-up"></i></a>
+    </div>
+    <!--=================================
+    Back To Top -->
+    
+    <!--=================================
+    Javascript -->
+
+    <!-- JS Global Compulsory (Do not remove)-->
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/popper/popper.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+    
+    <!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)-->
+    <script src="/static/js/jquery.appear.js"></script>
+    <script src="/static/js/select2/select2.full.js"></script>
+    
+    <!-- Template Scripts (Do not remove)-->
+    <script src="/static/js/custom.js"></script>
+    
+  </body>
+
+</html>
