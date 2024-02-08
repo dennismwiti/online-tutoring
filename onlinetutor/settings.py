@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-1h8v+s033o^#dj8bs)zfzo-2^73rv14$v6&pa5g*bp8*9t4+(0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['globalonlinetutors.onrender.com']
+ALLOWED_HOSTS = ["*"]
 
 SITE_ID = 1
 # Application definition
@@ -152,9 +152,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'onlinetutor/static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 MEDIA_URLS = '/media/'
