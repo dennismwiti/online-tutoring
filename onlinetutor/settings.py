@@ -20,7 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['globalonlinetutors.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://globalonlinetutors.up.railway.app']
 
 SITE_ID = 1
 # Application definition
