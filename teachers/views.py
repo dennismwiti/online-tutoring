@@ -9,7 +9,7 @@ from course.models import Course
 
 # Create your views here.
 def teachers(request):
-    all_teachers = Teacher.objects.all()
+    all_teachers = Teacher.order_by('department')
     paginator = Paginator(all_teachers, 6)
     page = request.GET.get('page', 1)
 
