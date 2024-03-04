@@ -46,7 +46,7 @@
             <img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="logo">
           </a>
           <div class="search-category ms-auto">
-            <form method="get" action="{% url 'search' %}">
+            <form method="get" action="{% url 'search_courses' %}">
               <div class="form-group select-border course-category">
                 <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
                 <select class="basic-select" name="category">
@@ -62,7 +62,7 @@
                 </select>
               </div>
             </form>
-            <form method="get" action="{% url 'search' %}">
+            <form method="get" action="{% url 'search_courses' %}">
               <input type="text" class="form-control" placeholder="Search Courses...">
               <input type="hidden" name="category" value="your_category_value">
               <button class="search-button" type="submit">
