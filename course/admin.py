@@ -3,9 +3,9 @@ from .models import Course
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['title', 'code', 'instructor', 'start_date', 'end_date', 'enrollment_status', 'status', 'visibility'
+    list_display = ['title', 'instructor', 'enrollment_status', 'status', 'visibility'
                     , 'is_related', 'category']
-    search_fields = ['title', 'code', 'instructor__name']
+    search_fields = ['title', 'instructor__name']
     list_filter = ['enrollment_status', 'status', 'visibility']
 
 

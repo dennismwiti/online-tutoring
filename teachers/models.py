@@ -40,7 +40,6 @@ class Teacher(models.Model):
     twitter_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
     instagram_url = models.URLField(blank=True, null=True)
-    google_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

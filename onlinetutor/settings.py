@@ -3,6 +3,7 @@ Django settings for onlinetutor project.
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'teachers',
     'pages',
     'contact',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,10 +83,13 @@ WSGI_APPLICATION = 'onlinetutor.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.config(
+        default=os.getenv(
+            'DATABASE_URL', 'postgres://onlinetutor_user:'
+                            'nooZakRB85sJyeKgHqLvzOIEZoeWMJt2@dpg-cn2vov8l5elc73cjkgug-a.'
+                            'oregon-postgres.render.com/onlinetutor'
+        )
+    )
 }
 
 JAZZMIN_SETTINGS = {
@@ -105,7 +111,7 @@ JAZZMIN_SETTINGS = {
 
     "search_model": ["auth.User", "auth.Group"],
 
-    "login_logo": "img/logos/newlogo-removebg-preview.png",
+    "login_logo": "images/logo-dark.svg",
 
 
     "topmenu_links": [
@@ -153,14 +159,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
 
-MEDIA_URLS = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Production Settings
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+AWS_ACCESS_KEY_ID = 'AKIAYVAQR36KJWFMRC5Y'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'django-onlinetutor'
+AWS_S3_REGION_NAME = 'us-west-2'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
