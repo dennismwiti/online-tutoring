@@ -48,22 +48,21 @@
             <form action="{% url 'search_courses' %}" method="get">
               <div class="form-group select-border course-category">
                 <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
-                <select class="basic-select" name="category">
-                    <option selected="selected">Curriculum</option>
-                    <option value="IGCSE">IGCSE</option>
-                    <option value="GCSE">GCSE</option>
-                    <option value="AS">AS</option>
-                    <option value="IB">IB</option>
-                    <option value="A-LEVELS">A-LEVELS</option>
-                    <option value="O-LEVELS">O-LEVELS</option>
-                    <option value="Pre-University">Pre-University</option>
-                    <option value="Enhance Exams">Enhance Exams</option>
+                <select class="basic-select" name="category" id="categorySelect">
+                    <option value="" {% if not category %}selected{% endif %}>Curriculum</option>
+                    <option value="IGCSE" {% if category == "IGCSE" %}selected{% endif %}>IGCSE</option>
+                    <option value="GCSE" {% if category == "GCSE" %}selected{% endif %}>GCSE</option>
+                    <option value="AS" {% if category == "AS" %}selected{% endif %}>AS</option>
+                    <option value="IB" {% if category == "IB" %}selected{% endif %}>IB</option>
+                    <option value="A-LEVELS" {% if category == "A-LEVELS" %}selected{% endif %}>A-LEVELS</option>
+                    <option value="O-LEVELS" {% if category == "O-LEVELS" %}selected{% endif %}>O-LEVELS</option>
+                    <option value="Pre-University" {% if category == "Pre-University" %}selected{% endif %}>Pre-University</option>
+                    <option value="Enhance Exams" {% if category == "Enhance Exams" %}selected{% endif %}>Enhance Exams</option>
                 </select>
               </div>
             </form>
             <form action="{% url 'search_courses' %}" method="get">
-              <input type="text" class="form-control" placeholder="Search Courses...">
-              <input type="hidden" name="category" value="{[ course.category ]}">
+              <input type="text" class="form-control" name="category" placeholder="Search Courses...">
               <button class="search-button" type="submit">
                 <i class="fa fa-search"></i>
               </button>
@@ -75,10 +74,10 @@
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
               </li>
               <li class="dropdown nav-item">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Subject<i class="fas fa-chevron-down fa-xs"></i></a>
+                <a class="nav-link" href="{% url 'courses' %}">Subject<i class="fas fa-chevron-down fa-xs"></i></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">IGCSE <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'IGCSE' %}">IGCSE <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -486,415 +485,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">AS <i class="fas fa-chevron-right fa-xs"></i></a>
-                    <ul class="dropdown-menu">
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Basic Pages</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="{% url 'about' %}"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="{% url 'contact' %}"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="login.html"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Information Pages</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="{% url 'privacy-policy' %}"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="{% url 'terms-and-conditions' %}"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="{% url 'faqs' %}"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Teachers Pages</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="{% url 'teachers' %}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Biology <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Chemistry <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Physics <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Double Science <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Business <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Computer Science <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Economics <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">English Language  <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">English Literature <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">French <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Geography <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">History <i class="fas fa-chevron-right fa-xs"></i></a>
-                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
-                          <li>
-                            <div class="row g-0">
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Edexcel</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">CIE</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
-                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-sm-6 col-md-4">
-                                <h6 class="nav-title">Oxford AQA</h6>
-                                <ul class="list-unstyled mt-lg-1">
-                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">GCSE <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'AS' %}">AS <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -1302,7 +893,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">IB <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'GCSE' %}">GCSE <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -1710,7 +1301,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">ALEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'IB' %}">IB <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -2118,7 +1709,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">OLEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'ALEVEL' %}">ALEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -2526,7 +2117,415 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">Pre-University <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'OLEVEL' %}">OLEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Basic Pages</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="{% url 'about' %}"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="{% url 'contact' %}"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="login.html"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Information Pages</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="{% url 'privacy-policy' %}"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="{% url 'terms-and-conditions' %}"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="{% url 'faqs' %}"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Teachers Pages</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="{% url 'teachers' %}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Biology <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Chemistry <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Physics <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Double Science <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Business <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Computer Science <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Economics <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">English Language  <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">English Literature <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">French <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Geography <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">History <i class="fas fa-chevron-right fa-xs"></i></a>
+                        <ul class="dropdown-menu megamenu dropdown-menu-lg">
+                          <li>
+                            <div class="row g-0">
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Edexcel</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>About us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Contact us</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>login</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">CIE</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#"><span>Privacy policy</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>Terms & conditions</span></a></li>
+                                  <li><a class="dropdown-item" href="#"><span>FAQs</span></a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                <h6 class="nav-title">Oxford AQA</h6>
+                                <ul class="list-unstyled mt-lg-1">
+                                  <li><a class="dropdown-item" href="#}"><span>Teachers</span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="{% url 'course-list' 'Pre-University' %}">Pre-University <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -2980,58 +2979,6 @@
               <li class="user">
                 <a data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Hello sign in<i class="fa fa-user ps-2 text-primary"></i></a>
               </li>
-              <li class="cart dropdown">
-                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="cart-icon"
-                  ><i class="fas fa-shopping-cart"></i></span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <ul class="cart-list ps-0">
-                    <li class="d-flex">
-                      <a class="remove-item" href="#"><i class="fas fa-times text-danger"></i></a>
-                      <img class="img-fluid me-3" src="{% static 'images/shop/01.jpg' %}" alt=""/>
-                      <div class="cart-info">
-                        <a href="#">Landscape Visitors Book - 122 Pages, A Design, A4</a>
-                        <span class="d-block">1 x 12.49</span>
-                      </div>
-                    </li>
-                    <li class="d-flex">
-                      <a class="remove-item" href="#"
-                        ><i class="fas fa-times text-danger"></i
-                      ></a>
-                      <img
-                        class="img-fluid me-3"
-                        src="{% static 'images/shop/02.jpg' %}"
-                        alt=""
-                      />
-                      <div class="cart-info">
-                        <a href="#"
-                          >Leather Visitors Notebook True-Ally A4 Faux</a
-                        >
-                        <span class="d-block">1 x 28.72</span>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="cart-footer">
-                    <div class="d-flex mb-3">
-                      <b class="me-auto text-dark">Subtotal:</b>
-                      <span>$41.21</span>
-                    </div>
-                    <div class="d-inline-block d-sm-flex">
-                      <a
-                        class="btn btn-sm btn-primary text-white me-2 px-4"
-                        href="#"
-                        >View cart</a
-                      >
-                      <a
-                        class="btn btn-sm btn-dark text-white ms-0 mt-1 mt-sm-0 ms-sm-2 px-4"
-                        href="#"
-                        >Checkout</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
@@ -3042,78 +2989,31 @@
 
     <!--=================================
     Modal login -->
-    <div
-      class="modal login fade"
-      id="loginModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="loginModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal login fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-0">
             <h5 class="modal-title" id="loginModalLabel">Log in & Register</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <ul
-              class="nav nav-tabs nav-tabs-02 justify-content-center"
-              id="myTab"
-              role="tablist"
-            >
+            <ul class="nav nav-tabs nav-tabs-02 justify-content-center" id="myTab" role="tablist">
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="login-tab"
-                  data-bs-toggle="tab"
-                  href="#login"
-                  role="tab"
-                  aria-controls="login"
-                  aria-selected="false"
-                >
-                  <span> Log in</span></a
-                >
+                <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">
+                  <span> Log in</span></a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="register-tab"
-                  data-bs-toggle="tab"
-                  href="#register"
-                  role="tab"
-                  aria-controls="register"
-                  aria-selected="true"
-                  ><span>Register</span></a
-                >
+                <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true"><span>Register</span></a>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="login"
-                role="tabpanel"
-                aria-labelledby="login-tab"
-              >
+              <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <form class="row my-4 align-items-center">
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                    />
+                    <input type="text" class="form-control" placeholder="Username">
                   </div>
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="Password"
-                      class="form-control"
-                      placeholder="Password"
-                    />
+                    <input type="Password" class="form-control" placeholder="Password">
                   </div>
                   <div class="col-sm-6 d-grid">
                     <button type="submit" class="btn btn-primary">
@@ -3123,101 +3023,48 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
                       <li class="me-1">
-                        <a class="text-dark" href="#"
-                          ><b
-                            >Already Registered User? Click here to login</b
-                          ></a
-                        >
+                        <a class="text-dark" href="#"><b>Already Registered User? Click here to login</b></a>
                       </li>
                     </ul>
                   </div>
                 </form>
-                <div
-                  class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm"
-                >
+                <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
                   <div class="mb-4 d-block text-center">
-                    <b class="bg-white ps-2 pe-2 mt-3 d-block"
-                      >Login or Sign in with</b
-                    >
+                    <b class="bg-white ps-2 pe-2 mt-3 d-block">Login or Sign in with</b>
                   </div>
                   <form class="row">
                     <div class="col-sm-6">
-                      <a
-                        class="btn facebook-bg social-bg-hover d-block mb-3"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-facebook-f me-2"></i>Login with
-                          Facebook</span
-                        ></a
-                      >
+                      <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-facebook-f me-2"></i>Login with
+                          Facebook</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn twitter-bg social-bg-hover d-block mb-3"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-twitter me-2"></i>Login with
-                          Twitter</span
-                        ></a
-                      >
+                      <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-twitter me-2"></i>Login with
+                          Twitter</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-instagram me-2"></i>Login with
-                          Instagram</span
-                        ></a
-                      >
+                      <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0" href="#"><span><i class="fab fa-instagram me-2"></i>Login with
+                          Instagram</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn linkedin-bg social-bg-hover d-block"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-linkedin-in me-2"></i>Login with
-                          Linkedin</span
-                        ></a
-                      >
+                      <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i class="fab fa-linkedin-in me-2"></i>Login with
+                          Linkedin</span></a>
                     </div>
                   </form>
                 </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="register"
-                role="tabpanel"
-                aria-labelledby="register-tab"
-              >
+              <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                 <form class="row my-4 align-items-center">
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                    />
+                    <input type="text" class="form-control" placeholder="Username">
                   </div>
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Email Address"
-                    />
+                    <input type="email" class="form-control" placeholder="Email Address">
                   </div>
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="Password"
-                      class="form-control"
-                      placeholder="Password"
-                    />
+                    <input type="Password" class="form-control" placeholder="Password">
                   </div>
                   <div class="mb-3 col-sm-12">
-                    <input
-                      type="Password"
-                      class="form-control"
-                      placeholder="Confirm Password"
-                    />
+                    <input type="Password" class="form-control" placeholder="Confirm Password">
                   </div>
                   <div class="col-sm-6 d-grid">
                     <button type="submit" class="btn btn-primary">
@@ -3227,63 +3074,31 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
                       <li class="me-1">
-                        <a class="text-dark" href="#"
-                          ><b
-                            >Already Registered User? Click here to login</b
-                          ></a
-                        >
+                        <a class="text-dark" href="#"><b>Already Registered User? Click here to login</b></a>
                       </li>
                     </ul>
                   </div>
                 </form>
-                <div
-                  class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm"
-                >
+                <div class="login-social-media border ps-4 pe-4 pb-4 pt-0 rounded-sm">
                   <div class="mb-4 d-block text-center">
-                    <b class="bg-white ps-2 pe-2 mt-3 d-block"
-                      >Login or Sign in with</b
-                    >
+                    <b class="bg-white ps-2 pe-2 mt-3 d-block">Login or Sign in with</b>
                   </div>
                   <form class="row">
                     <div class="col-sm-6">
-                      <a
-                        class="btn facebook-bg social-bg-hover d-block mb-3"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-facebook-f me-2"></i>Login with
-                          Facebook</span
-                        ></a
-                      >
+                      <a class="btn facebook-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-facebook-f me-2"></i>Login with
+                          Facebook</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn twitter-bg social-bg-hover d-block mb-3"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-twitter me-2"></i>Login with
-                          Twitter</span
-                        ></a
-                      >
+                      <a class="btn twitter-bg social-bg-hover d-block mb-3" href="#"><span><i class="fab fa-twitter me-2"></i>Login with
+                          Twitter</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-instagram me-2"></i>Login with
-                          Instagram</span
-                        ></a
-                      >
+                      <a class="btn instagram-bg social-bg-hover d-block mb-3 mb-sm-0" href="#"><span><i class="fab fa-instagram me-2"></i>Login with
+                          Instagram</span></a>
                     </div>
                     <div class="col-sm-6">
-                      <a
-                        class="btn linkedin-bg social-bg-hover d-block"
-                        href="#"
-                        ><span
-                          ><i class="fab fa-linkedin-in me-2"></i>Login with
-                          Linkedin</span
-                        ></a
-                      >
+                      <a class="btn linkedin-bg social-bg-hover d-block" href="#"><span><i class="fab fa-linkedin-in me-2"></i>Login with
+                          Linkedin</span></a>
                     </div>
                   </form>
                 </div>
@@ -3310,20 +3125,10 @@
             <form class="col-md-10 offset-md-1" method="GET" action="#">
               <div class="row d-flex align-items-center">
                 <div class="col-md-4 col-lg-3 mb-3 mb-md-0">
-                  <input
-                    type="text"
-                    name="q"
-                    class="form-control rounded-sm"
-                    placeholder="Search Course"
-                  />
+                  <input type="text" name="q" class="form-control rounded-sm" placeholder="Search Course(eg:IGCSE..)">
                 </div>
                 <div class="col-md-4 col-lg-3 mb-3 mb-md-0">
-                  <input
-                    type="text"
-                    name="location"
-                    class="form-control rounded-sm"
-                    placeholder="Location"
-                  />
+                  <input type="text" name="location" class="form-control rounded-sm" placeholder="Search Subjects(eg:maths..)">
                 </div>
                 <div class="col-md-4 col-lg-3">
                   <select class="basic-select form-control">
@@ -3339,8 +3144,7 @@
                   </select>
                 </div>
                 <div class="col-12 col-lg-3 text-start mt-3 mt-lg-0">
-                  <a class="btn btn-primary d-lg-block rounded-sm" href="#"
-                    >Search course</a>
+                  <a class="btn btn-primary d-lg-block rounded-sm" href="#">Search course</a>
                 </div>
               </div>
             </form>
@@ -3397,25 +3201,6 @@
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="checkbox6"/>
                     <label class="custom-control-label" for="checkbox6">O-LEVELS</label>
-                  </div>
-                </div>
-              </div>
-              <div class="widget">
-                <div class="widget-title">
-                  <h6>Levels</h6>
-                </div>
-                <div class="widget-content">
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="checkbox12"/>
-                    <label class="custom-control-label" for="checkbox12">Beginner</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="checkbox7"/>
-                    <label class="custom-control-label" for="checkbox7">Intermediate</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="checkbox8"/>
-                    <label class="custom-control-label" for="checkbox8">Advanced</label>
                   </div>
                 </div>
               </div>

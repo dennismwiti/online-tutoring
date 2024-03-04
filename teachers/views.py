@@ -3,6 +3,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.middleware.csrf import get_token
 from .models import Teacher
 from course.models import Course
+from django.contrib import messages
 # from django.views.decorators.cache import cache_page
 # import hashlib
 
@@ -41,6 +42,29 @@ def teachers_detail(request, id, no_car=False):
         'related_courses': related_courses,
     }
     return render(request, 'teachers/teacher-detail.html', data)
+
+
+def teachers_search(request):
+    subject = request.GET.get('subject', '')
+
+    # Filter teachers based on the search query (case-insensitive)
+    filtered_teachers = Teacher.objects.filter(department__icontains=subject)
+
+    if not filtered_teachers:
+        messages.warning(request, f"No tutor found for the subject '{subject}'.")
+
+    # Pagination
+    paginator = Paginator(filtered_teachers, 6)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'teachers': page_obj,
+        'query': subject,
+    }
+
+    return render(request, 'teachers/teachers.html', context)
+
 
 #
 # def get_style_hash():

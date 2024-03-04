@@ -49,22 +49,21 @@
             <form action="{% url 'search_courses' %}" method="get">
               <div class="form-group select-border course-category">
                 <i class="fa fa-th text-primary me-2" aria-hidden="true"></i>
-                <select class="basic-select" name="category">
-                    <option selected="selected">Curriculum</option>
-                    <option value="IGCSE">IGCSE</option>
-                    <option value="GCSE">GCSE</option>
-                    <option value="AS">AS</option>
-                    <option value="IB">IB</option>
-                    <option value="A-LEVELS">A-LEVELS</option>
-                    <option value="O-LEVELS">O-LEVELS</option>
-                    <option value="Pre-University">Pre-University</option>
-                    <option value="Enhance Exams">Enhance Exams</option>
+                <select class="basic-select" name="category" id="categorySelect">
+                    <option value="" {% if not category %}selected{% endif %}>Curriculum</option>
+                    <option value="IGCSE" {% if category == "IGCSE" %}selected{% endif %}>IGCSE</option>
+                    <option value="GCSE" {% if category == "GCSE" %}selected{% endif %}>GCSE</option>
+                    <option value="AS" {% if category == "AS" %}selected{% endif %}>AS</option>
+                    <option value="IB" {% if category == "IB" %}selected{% endif %}>IB</option>
+                    <option value="A-LEVELS" {% if category == "A-LEVELS" %}selected{% endif %}>A-LEVELS</option>
+                    <option value="O-LEVELS" {% if category == "O-LEVELS" %}selected{% endif %}>O-LEVELS</option>
+                    <option value="Pre-University" {% if category == "Pre-University" %}selected{% endif %}>Pre-University</option>
+                    <option value="Enhance Exams" {% if category == "Enhance Exams" %}selected{% endif %}>Enhance Exams</option>
                 </select>
               </div>
             </form>
             <form action="{% url 'search_courses' %}" method="get">
-              <input name="query" type="text" class="form-control" placeholder="Search Courses..." value="{{ query}}">
-<!--              <input type="hidden" name="category" value="your_category_value">-->
+              <input type="text" class="form-control" name="category" placeholder="Search Courses...">
               <button class="search-button" type="submit">
                 <i class="fa fa-search"></i>
               </button>
@@ -76,10 +75,10 @@
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
               </li>
               <li class="dropdown nav-item">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Subject<i class="fas fa-chevron-down fa-xs"></i></a>
+                <a class="nav-link" href="{% url 'courses' %}">Subject<i class="fas fa-chevron-down fa-xs"></i></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">IGCSE <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'IGCSE' %}">IGCSE <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -499,7 +498,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">AS <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'AS' %}">AS <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -907,7 +906,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">GCSE <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'GCSE' %}">GCSE <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -1315,7 +1314,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">IB <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'IB' %}">IB <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -1723,7 +1722,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">ALEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'ALEVEL' %}">ALEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -2131,7 +2130,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">OLEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'OLEVEL' %}">OLEVEL <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -2539,7 +2538,7 @@
                     </ul>
                   </li>
                   <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">Pre-University <i class="fas fa-chevron-right fa-xs"></i></a>
+                    <a href="{% url 'course-list' 'Pre-University' %}">Pre-University <i class="fas fa-chevron-right fa-xs"></i></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">MATHS <i class="fas fa-chevron-right fa-xs"></i></a>
@@ -3133,37 +3132,21 @@
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-              "
-            >
+              ">
               <div class="container">
                 <div class="row">
                   <div class="col-md-12 position-relative">
                     <div class="banner-content">
                       <div class="content text-center">
-                        <h1
-                          class="animated text-white mb-3"
-                          data-swiper-animation="fadeInUp"
-                          data-duration="2.0s"
-                          data-delay="1.0s"
-                        >
+                        <h1 class="animated text-white mb-3" data-swiper-animation="fadeInUp" data-duration="2.0s" data-delay="1.0s">
                           The right place for an online tutor for your child.
                         </h1>
-                        <h6
-                          class="animated text-white"
-                          data-swiper-animation="fadeInUp"
-                          data-duration="1.5s"
-                          data-delay="1.0s"
-                        >
+                        <h6 class="animated text-white" data-swiper-animation="fadeInUp" data-duration="1.5s" data-delay="1.0s">
                           A best and cheapest way of getting to know learning to
                           make a better tomorrow.
                         </h6>
-                        <a
-                          class="btn btn-md btn-primary mt-4 animated"
-                          href="#"
-                          data-swiper-animation="fadeInUp"
-                          data-duration="2.0s"
-                          data-delay="1.0s"
-                          >Ready to get started?
+                        <a class="btn btn-md btn-primary mt-4 animated" href="#" data-swiper-animation="fadeInUp"
+                           data-duration="2.0s" data-delay="1.0s">Ready to get started?
                         </a>
                       </div>
                     </div>
@@ -3178,37 +3161,24 @@
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-              "
-            >
+              ">
               <div class="container">
                 <div class="row">
                   <div class="col-md-8 offset-md-2 position-relative">
                     <div class="banner-content">
                       <div class="content text-center">
-                        <h1
-                          class="animated text-white mb-3"
-                          data-swiper-animation="fadeInUp"
-                          data-duration="2.0s"
-                          data-delay="1.0s"
-                        >
+                        <h1 class="animated text-white mb-3" data-swiper-animation="fadeInUp" data-duration="2.0s" data-delay="1.0s">
                           Best education from your home
                         </h1>
                         <h6
                           class="animated text-white"
                           data-swiper-animation="fadeInUp"
                           data-duration="2.0s"
-                          data-delay="1.5s"
-                        >
+                          data-delay="1.5s">
                           Don’t change your learning just change a way of.
                         </h6>
-                        <a
-                          class="btn btn-md btn-primary mt-4 animated"
-                          href="#"
-                          data-swiper-animation="fadeInUp"
-                          data-duration="2.0s"
-                          data-delay="2.0s"
-                          >Learn more</a
-                        >
+                        <a class="btn btn-md btn-primary mt-4 animated" href="#" data-swiper-animation="fadeInUp"
+                           data-duration="2.0s" data-delay="2.0s">Learn more</a>
                       </div>
                     </div>
                   </div>
@@ -3221,16 +3191,14 @@
             class="swiper-button-prev"
             tabindex="0"
             role="button"
-            aria-label="Previous slide"
-          >
+            aria-label="Previous slide">
             <i class="fas fa-chevron-left"></i>
           </div>
           <div
             class="swiper-button-next"
             tabindex="0"
             role="button"
-            aria-label="Next slide"
-          >
+            aria-label="Next slide">
             <i class="fas fa-chevron-right"></i>
           </div>
         </div>

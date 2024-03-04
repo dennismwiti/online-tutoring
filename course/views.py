@@ -84,65 +84,32 @@ def course_details(request, id, no_course=False):
 
 @cache_page(60 * 15)
 def search_courses(request):
-				# Fetch the user's search query from the GET parameters
-				search_query = request.GET.get('query', '')
+				query = request.GET.get('q', '')
+				category = request.GET.get('category', '')
 
-				# Perform a basic search in your Accessory model
-				results = Course.objects.filter(
-								Q(title__icontains=search_query) |
-								Q(category__iexact=search_query)
-				)
+				print("Query:", query)  # Print the value of the query parameter
+				print("Category:", category)
 
-				# Print the SQL query
-				if connection.queries:
-								print(connection.queries[-1]['sql'])
+				filtered_courses = Course.objects.all()
 
-				# If no search query, return all accessories
-				if not search_query:
-								results = Course.objects.all()
+				if category:
+								filtered_courses = filtered_courses.filter(category=category)
+				else:
+								filtered_courses = filtered_courses.filter(title__icontains=query)
 
-				# Pagination
+				filtered_courses = filtered_courses.order_by('title')
+
+				print("Filtered Courses Query:", filtered_courses.query)
+
+				course_per_page = 4
+				paginator = Paginator(filtered_courses, course_per_page)
 				page = request.GET.get('page', 1)
-				paginator = Paginator(results, 6)
+
 				try:
-								paged_courses = paginator.page(page)
-				except PageNotAnInteger:
-								paged_courses = paginator.page(1)
+								paginated_courses = paginator.page(page)
+				except PageNotInteger:
+								paginated_courses = paginator.page(1)
 				except EmptyPage:
-								paged_courses = paginator.page(paginator.num_pages)
+								paginated_courses = paginator.page(paginator.num_pages)
 
-				# Debugging: insert a breakpoint
-				pdb.set_trace()
-
-				context = {
-								'results': results,
-								'query': search_query,
-								'paged_course': paged_courses
-				}
-
-				return render(request, 'course/course-list.html', context)
-
-				# category = request.GET.get('category', '')
-				#
-				# print("Query:", query)
-				# print("Category:", category)
-				#
-				# if category:
-				# 				filtered_courses = Course.objects.filter(category=category, title__icontains=query)
-				# else:
-				# 				filtered_courses = Course.objects.filter(title__icontains=query)
-				#
-				# filtered_courses = filtered_courses.order_by('title')
-				#
-				# course_per_page = 4
-				# paginator = Paginator(filtered_courses, course_per_page)
-				# page = request.GET.get('page', 1)
-				#
-				# try:
-				# 				paginated_courses = paginator.page(page)
-				# except PageNotInteger:
-				# 				paginated_courses = paginator.page(1)
-				# except EmptyPage:
-				# 				paginated_courses = paginator.page(paginator.num_pages)
-				#
-				# return render(request, 'course/course-list.html', {'filtered_courses': paginated_courses, 'query': query, 'category': category})
+				return render(request, 'course/course-list.html', {'filtered_courses': paginated_courses, 'query': query, 'category': category})
