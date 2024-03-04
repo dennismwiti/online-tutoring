@@ -3811,8 +3811,10 @@ ul.list {
   letter-spacing: 1px; }
   .navbar .dropdown > .dropdown-menu li > a:hover {
     color: #21c87a; }
+    /*
   .navbar .dropdown > .dropdown-menu li > a span {
     padding: 8px 15px; }
+    */
 
 .navbar .dropdown > .dropdown-menu li:last-child {
   border-bottom: none; }
